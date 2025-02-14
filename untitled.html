@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feliz San Valentín</title>
+  <!-- Fuente para el título en cursiva -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    /* Estilos globales */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #000; /* Fondo oscuro */
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    /* Pantalla de candado */
+    #lockScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.95);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+      transition: opacity 1s ease;
+    }
+    #lockScreen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    /* Botón de candado en forma de corazón */
+    #lockButton {
+      background: none;
+      border: none;
+      font-size: 80px;
+      color: #e74c3c;
+      cursor: pointer;
+      outline: none;
+      transition: transform 0.3s ease;
+    }
+    #lockButton:active {
+      transform: scale(0.9);
+    }
+    /* Contenedor principal del contenido */
+    #content {
+      display: none; /* Se muestra tras la transición */
+      position: relative;
+      z-index: 10;
+      margin: 50px auto;
+      padding: 50px;
+      max-width: 800px;
+      background: rgba(255, 255, 255, 0.8); /* Transparencia */
+      border: 3px solid #e74c3c;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+    /* Corazones fijos en las esquinas para el marco */
+    .corner-heart {
+      position: absolute;
+      font-size: 30px;
+      color: #e74c3c;
+    }
+    #top-left { top: -15px; left: -15px; }
+    #top-right { top: -15px; right: -15px; }
+    #bottom-left { bottom: -15px; left: -15px; }
+    #bottom-right { bottom: -15px; right: -15px; }
+    /* Título en cursiva y centrado */
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      margin-bottom: 20px;
+      text-align: center; /* Centrado del título */
+      position: relative;
+      z-index: 2;
+    }
+    /* Contador de tiempo */
+    #timeCounter {
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #e74c3c;
+      text-align: center;
+      z-index: 2;
+    }
+    /* Texto del mensaje */
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    /* Contenedor para los corazones que caen en el fondo */
+    .falling-hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    /* Estilo de cada corazón que cae */
+    .falling-heart {
+      position: absolute;
+      opacity: 0;
+      animation: fall linear forwards;
+    }
+    /* Animación de caída: simula una hoja cayendo con oscilación */
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(10px) translateY(120%) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Pantalla de candado -->
+  <div id="lockScreen">
+    <button id="lockButton">❤️🔒</button>
+  </div>
+
+  <!-- Contenido principal -->
+  <div id="content">
+    <!-- Marco con corazones fijos -->
+    <span class="corner-heart" id="top-left">❤️</span>
+    <span class="corner-heart" id="top-right">❤️</span>
+    <span class="corner-heart" id="bottom-left">❤️</span>
+    <span class="corner-heart" id="bottom-right">❤️</span>
+    <!-- Contenedor para los corazones que caen en el fondo -->
+    <div class="falling-hearts"></div>
+    <!-- Título -->
+    <h1>¡Feliz San Valentín Amor de mi vida 💘!</h1>
+    <!-- Contador de tiempo -->
+    <div id="timeCounter">
+      Tiempo de novios ❤️‍🩹
+      <div id="counter">Calculando...</div>
+    </div>
+    <!-- Texto -->
+    <p>
+      Hoy, 14 de febrero, celebramos la valentía de haber emprendido juntos un camino lleno de nuevas experiencias. Aunque en él hemos tenido algunos tropezones, lo más importante es que, sin importar el obstáculo, seguimos unidos y nuestra meta no ha cambiado: una vida juntos 💘.
+    </p>
+    <p>
+      Gracias por aguantar cada uno de mis errores, cada una de mis tonterías, mis malas bromas y los momentos incómodos. Pero, sobre todo, gracias por amarme incondicionalmente, por creer en mí cuando nadie más lo hizo y por alegrar mi vida.
+    </p>
+    <p>
+      Gracias por compartir casi 8 meses a tu lado y por ser tú.
+    </p>
+    <p>
+      Queda un camino largo y muchos tropezones más, pero quiero compartir mi vida contigo y con nadie más.
+    </p>
+    <p>
+      Te amo, mi vida, y gracias por ser una razón más para seguir adelante.
+    </p>
+    <p>
+      Tu novio, que te ama 💞💞
+    </p>
+  </div>
+
+  <!-- Audio: MP3 desde Google Drive -->
+  <audio id="audio" loop>
+    <source src="https://drive.google.com/uc?id=1BVxbA8Mj-SRBipIpynKnVr2MClSfcWdX" type="audio/mpeg">
+    Tu navegador no soporta la reproducción de audio.
+  </audio>
+
+  <script>
+    // Elementos del DOM
+    const lockScreen = document.getElementById('lockScreen');
+    const lockButton = document.getElementById('lockButton');
+    const audio = document.getElementById('audio');
+    const content = document.getElementById('content');
+    const timeCounter = document.getElementById('counter');
+
+    // Fecha de inicio (15 de mayo)
+    const startDate = new Date("May 15, 2024 00:00:00");
+
+    // Función para actualizar el contador de tiempo
+    function updateCounter() {
+      const now = new Date();
+      const timeDiff = now - startDate;
+
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+      timeCounter.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    // Actualiza el contador cada segundo
+    setInterval(updateCounter, 1000);
+
+    // Evento de clic en el botón del candado
+    lockButton.addEventListener('click', () => {
+      lockButton.innerText = '❤️🔓'; // Cambiar el candado a abierto
+      audio.play().catch((e) => console.log("Error al reproducir audio:", e)); // Reproducir el audio
+      lockScreen.classList.add('fade-out'); // Ocultar la pantalla de candado
+      setTimeout(() => {
+        lockScreen.style.display = 'none';
+        content.style.display = 'block'; // Mostrar el contenido
+      }, 1000);
+    });
+
+    // Función para generar corazones que caen
+    function createFallingHeart() {
+      const heartEmojis = ['❤️', '💜', '❤️‍🩹', '💗', '💖', '💙', '🤍', '💞', '💘', '💕'];
+      const heart = document.createElement('span');
+      heart.classList.add('falling-heart');
+      heart.style.fontSize = `${Math.random() * 30 + 20}px`;
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+      const fallDuration = Math.random() * 3 + 2;
+      heart.style.animationDuration = `${fallDuration}s`;
+
+      document.querySelector('.falling-hearts').appendChild(heart);
+
+      // Eliminar corazón después de que termine la animación
+      setTimeout(() => {
+        heart.remove();
+      }, fallDuration * 1000);
+    }
+
+    // Generar corazones cada 300ms
+    setInterval(createFallingHeart, 300);
+  </script>
+</body>
+</html>
